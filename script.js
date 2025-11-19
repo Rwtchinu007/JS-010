@@ -1,36 +1,21 @@
-// setTimeout and setInterval 
-// setTimeout is used to execute a function after a specified delay, while setInterval is used to repeatedly execute a function at specified intervals.
-// setTimeout mtlb delay
-// setTimeout(function(){
-//     console.log("hello 3");
-// },3000); // 1000ms = 1 second
-// setTimeout(function(){
-//     console.log("hello 1");
-// },1000);
-// setTimeout(function(){
-//     console.log("hello 2");
-// },2000);
+var btn = document.querySelector("button");
+var inner = document.querySelector(".inner");
+var h2 = document.querySelector("h2");
+var grow = 0;
 
-
-// var btn = document.querySelector("button");
-// var h1 = document.querySelector("h1");
-// btn.addEventListener("click", function(){
-//     h1.innerHTML = "Loading...";
-//     setTimeout(function(){
-//         h1.innerHTML = "Hello I'm Mannu";
-//     },2000);
-// });
-
-
-// setInterval - controlled repetition with intervals
-var a = 0;
-var int = setInterval(function(
-){
-    a++;
-    console.log("Hello " + a);
-
-}, 100)
-
-setTimeout(function(){
-    clearInterval(int); // to stop the interval after first execution..
-}, 4000);
+btn.addEventListener("click", function () {
+  btn.style.pointerEvents = "none";
+  var num = 50 + Math.floor(Math.random() * 50);
+  console.log(`your file will be ready in ${num/10} seconds`);
+  var interval = setInterval(function () {
+    grow++;
+    // console.log(grow);
+    inner.style.width = grow + "%";
+    h2.innerText = grow + "%";
+  }, num);
+  setTimeout(function () {
+    clearInterval(interval);
+    btn.innerHTML = "Done";
+    btn.style.opacity = "0.5";
+  }, num * 100);
+});
